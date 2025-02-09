@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           {creating ? " + 1" : ""})
         </span>
       </h3>
-      <div className="flex flex-col gap-6 home-container">
+      <div className="flex flex-col gap-6 laptop:grid laptop:grid-cols-3">
         {filteredCard.map((f, i) => {
           return (
             <Card
