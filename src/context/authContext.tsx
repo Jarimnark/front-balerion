@@ -35,7 +35,7 @@ const mockTokens = {
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [token, setToken] = useState<string>("");
+  // const [token, setToken] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<"ADMIN" | "USER" | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       | "USER"
       | null;
     if (storedToken && storedEmail && storedRole) {
-      setToken(storedToken);
+      // setToken(storedToken);
       setEmail(storedEmail);
       setRole(storedRole);
     } else {
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const setInfo = (tokenInput: string) => {
     const auth: Auth = jwtDecode(tokenInput);
-    setToken(tokenInput);
+    // setToken(tokenInput);
     sessionStorage.setItem(STORAGE_KEY, tokenInput);
     setEmail(auth.email);
     sessionStorage.setItem(EMAIL_KEY, auth.email);
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
   const logout = () => {
-    setToken("");
+    // setToken("");
     setEmail("");
     setRole(null);
     setError(null);
