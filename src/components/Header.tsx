@@ -4,8 +4,8 @@ import { MdOutlineLogout } from "react-icons/md";
 const Header = () => {
   const { email, logout } = useAuth();
   return (
-    <header className="flex justify-end items-center p-3 gap-4">
-      <span className="text-2xl font-bold">{email}</span>
+    <header className="flex justify-end items-center p-3 gap-4 fixed w-full bg-black z-10">
+      <span className="text-3xl font-semibold">{email}</span>
       <button
         onClick={() => {
           logout();

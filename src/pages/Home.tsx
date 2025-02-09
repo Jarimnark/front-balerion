@@ -28,15 +28,15 @@ const Home: React.FC = () => {
   }, [cards]);
 
   return (
-    <div className="flex flex-col items-center gap-2 justify-start mt-8">
-      <h3 className="font-bold text-4xl my-8">
+    <div className="flex flex-col items-center gap-2 justify-start mt-20 mb-8">
+      <h3 className="font-bold text-6xl my-8">
         Memo Card{filteredCard.length > 1 ? "s" : ""}
         <span className="ms-2 text-xl">
           ({filteredCard.length}
           {creating ? " + 1" : ""})
         </span>
       </h3>
-      <div className="flex flex-col gap-4 md:grid md:grid-cols-3">
+      <div className="flex flex-col gap-6 home-container">
         {filteredCard.map((f, i) => {
           return (
             <Card

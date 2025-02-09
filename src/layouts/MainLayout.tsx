@@ -5,9 +5,7 @@ const MainLayout = () => {
   return (
     <div className="h-screen w-screen overflow-y-auto bg-black text-white">
       <Header />
-      <div className="p-4">
-        <Outlet /> {/* This renders child routes */}
-      </div>
+      <Outlet /> {/* This renders child routes */}
     </div>
   );
 };

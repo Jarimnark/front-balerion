@@ -14,10 +14,10 @@ const CreatingCard: React.FC<Props> = ({ onSave, role }) => {
     role === "ADMIN" ? `ADMIN-${adminLength + 1}` : `MEMO-${userLength + 1}`; // Generate title based on role
   const [description, setDescription] = React.useState<string>(""); // State for description
   return (
-    <div className="w-[347px] h-[198px] bg-white rounded-xl p-4 grid-cols-[1fr_3fr] grid">
+    <div className="w-[347px] h-[198px] bg-white rounded-xl p-4 grid-cols-[1fr_3fr] grid gap-8">
       <div className="flex flex-col items-center justify-between gap-2">
         <div className="flex flex-col items-start gap-2 self-start">
-          <h2 className="text-black opacity-50 font-semibold text-[15px]">
+          <h2 className="text-black opacity-50 font-semibold text-[15px] text-nowrap">
             {title}
           </h2>
           <div
@@ -34,7 +34,7 @@ const CreatingCard: React.FC<Props> = ({ onSave, role }) => {
             onSave();
             addCard({ title, description, role, created_date: new Date() }); // Add new card to context
           }}
-          className="bg-white text-black font-semibold text-xs underline justify-self-end"
+          className="bg-white text-black font-semibold text-xs underline justify-self-end cursor-pointer"
         >
           SAVE
         </button>
@@ -47,7 +47,7 @@ const CreatingCard: React.FC<Props> = ({ onSave, role }) => {
         onChange={(e) => {
           setDescription(e.target.value);
         }}
-        className="bg-[#D4D4D8] opacity-30 rounded-xl p-2 text-black text-[10px] focus:outline-none"
+        className="bg-[#D4D4D8] opacity-30 rounded-xl p-2.5 text-black text-[10px] focus:outline-none "
       ></textarea>
     </div>
   );
