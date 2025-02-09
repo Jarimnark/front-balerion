@@ -1,0 +1,45 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+/.log
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build and Output
+dist/
+build/
+.cache/
+.next/
+out/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Miscellaneous
+*.DS_Store
+*.log
+
+
+vite/
+.vite/
