@@ -14,7 +14,7 @@ const Login: React.FC = () => {
     username?: string;
     password?: string;
   }>({});
-  const { login, error } = useAuth();
+  const { login, error, isPopupVisible } = useAuth();
   // const [loginError, setLoginError] = useState<string>("");
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +85,11 @@ const Login: React.FC = () => {
           เข้าสู่ระบบ
         </button>
       </form>
+      {isPopupVisible && (
+        <div className="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity animate-fade-in">
+          ✅ Login Successful!
+        </div>
+      )}
     </div>
   );
 };

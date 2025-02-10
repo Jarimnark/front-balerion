@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "POST",
+      "requestPayload": "{\r\n  \"username\": \"user1\",\r\n  \"password\": \"1234\"\r\n}",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "afc11190-e7b4-11ef-b1d7-b50260a28dbd",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidXNlcjEiLCJlbWFpbCI6InVzZXIuZW1haWxAZ21haWwuY29tIiwicm9sZSI6IlVTRVIifQ.IgQln56kjBGc66IAjRMjeJtscM2u--Uz5Ul01r1f874\"\r\n}",
+      "status": 200,
+      "url": "http://exampleapi.com/api/v1/auth/login"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": " (copy)",
+      "method": "POST",
+      "requestPayload": "{\r\n  \"username\": \"admin1\",\r\n  \"password\": \"1234\"\r\n}",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "afc11190-e7b4-11ef-b1d7-b50260a28dbd",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4xIiwiZW1haWwiOiJhZG1pbi5lbWFpbEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4ifQ.91VaQcMDdRWOj849ddLZO7pR_qjl_DpHdaaYCYfakkg\"\r\n}",
+      "status": 200,
+      "url": "http://exampleapi.com/api/v1/auth/login"
+    }
+  ]
+}

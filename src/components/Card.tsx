@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "motion/react";
 interface Props {
   title: string;
   description: string;
@@ -9,7 +9,12 @@ interface Props {
 
 const Card: React.FC<Props> = ({ title, description, role, hasTag }) => {
   return (
-    <div className="w-[347px] h-[198px] bg-white rounded-xl p-4 grid-cols-[1fr_3fr] grid relative gap-8">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-[347px] h-[198px] bg-white rounded-xl p-4 grid-cols-[1fr_3fr] grid relative gap-8"
+    >
       {hasTag && (
         <div className="rounded-[15px] py-2.5 px-3 bg-[#8C6CFF] text-white text-xs font-semibold absolute -right-2.5 -top-4.5">
           NEW
@@ -31,7 +36,7 @@ const Card: React.FC<Props> = ({ title, description, role, hasTag }) => {
       <p className="text-[10px] font-light text-black leading-5">
         {description}
       </p>
-    </div>
+    </motion.div>
   );
 };
 

@@ -7,6 +7,7 @@ import {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface Auth {
   name: string;
@@ -20,6 +21,7 @@ interface AuthContextType {
   error: string | null;
   login: (username: string, password: string) => void;
   logout: () => void;
+  isPopupVisible: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,17 +30,18 @@ const STORAGE_KEY = "auth";
 const EMAIL_KEY = "email";
 const ROLE_KEY = "role";
 
-const mockTokens = {
-  admin:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4xIiwiZW1haWwiOiJhZG1pbi5lbWFpbEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4ifQ.91VaQcMDdRWOj849ddLZO7pR_qjl_DpHdaaYCYfakkg",
-  user: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidXNlcjEiLCJlbWFpbCI6InVzZXIuZW1haWxAZ21haWwuY29tIiwicm9sZSI6IlVTRVIifQ.IgQln56kjBGc66IAjRMjeJtscM2u--Uz5Ul01r1f874",
-};
+// const mockTokens = {
+//   admin:
+//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4xIiwiZW1haWwiOiJhZG1pbi5lbWFpbEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4ifQ.91VaQcMDdRWOj849ddLZO7pR_qjl_DpHdaaYCYfakkg",
+//   user: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidXNlcjEiLCJlbWFpbCI6InVzZXIuZW1haWxAZ21haWwuY29tIiwicm9sZSI6IlVTRVIifQ.IgQln56kjBGc66IAjRMjeJtscM2u--Uz5Ul01r1f874",
+// };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // const [token, setToken] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<"ADMIN" | "USER" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
   const navigate = useNavigate();
   useEffect(() => {
     const storedToken = sessionStorage.getItem(STORAGE_KEY);
@@ -67,16 +70,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setError(null);
   };
 
-  const login = (username: string, password: string) => {
-    if (username === "admin1" && password === "1234") {
-      setInfo(mockTokens.admin);
-      navigate("/");
-    } else if (username === "user1" && password === "1234") {
-      setInfo(mockTokens.user);
-      navigate("/");
-    } else {
+  const login = async (username: string, password: string) => {
+    try {
+      console.log("login");
+      console.log({ username, password });
+      const res = await axios.post("http://exampleapi.com/api/v1/auth/login", {
+        username,
+        password,
+      });
+      console.log(res);
+
+      const tokenReceive = res.data.token;
+      setInfo(tokenReceive);
+      setIsPopupVisible(true);
+      setTimeout(() => {
+        setIsPopupVisible(false);
+        navigate("/");
+      }, 2000);
+    } catch (error) {
       setError("Wrong username or password");
     }
+
+    // if (username === "admin1" && password === "1234") {
+    //   setInfo(mockTokens.admin);
+    //   navigate("/");
+    // } else if (username === "user1" && password === "1234") {
+    //   setInfo(mockTokens.user);
+    //   navigate("/");
+    // } else {
+    //   setError("Wrong username or password");
+    // }
   };
   const logout = () => {
     // setToken("");
@@ -89,7 +112,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate("/auth/login");
   };
   return (
-    <AuthContext.Provider value={{ email, role, error, login, logout }}>
+    <AuthContext.Provider
+      value={{ email, role, error, login, logout, isPopupVisible }}
+    >
       {children}
     </AuthContext.Provider>
   );

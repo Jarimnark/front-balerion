@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import CreatingCard from "@/components/CreatingCard";
 import { useAuth } from "@/context/authContext";
 import { Card as CardInterface, useCard } from "@/context/cardContext";
+import { motion } from "motion/react";
 import React, { useEffect } from "react";
 
 const Home: React.FC = () => {
@@ -13,7 +14,6 @@ const Home: React.FC = () => {
   const [filteredCard, setFilteredCard] = React.useState<CardInterface[]>([]);
   const { role } = useAuth();
   useEffect(() => {
-    console.log("cards", cards);
     const sortCard =
       role == "USER"
         ? cards
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           {creating ? " + 1" : ""})
         </span>
       </h3>
-      <div className="flex flex-col gap-6 laptop:grid laptop:grid-cols-3">
+      <div className="flex flex-col gap-4 laptop:grid laptop:grid-cols-3">
         {filteredCard.map((f, i) => {
           return (
             <Card
@@ -56,14 +56,19 @@ const Home: React.FC = () => {
             role={role || "ADMIN"}
           />
         ) : (
-          <button
+          <motion.button
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => {
               setCreating(true);
             }}
-            className="text-black text-6xl w-[347px] h-[198px] bg-white rounded-xl opacity-70 hover:scale-105 active:scale-95 cursor-pointer"
+            className="text-black text-6xl w-[347px] h-[198px] bg-white rounded-xl cursor-pointer"
           >
             +
-          </button>
+          </motion.button>
         )}
       </div>
     </div>
