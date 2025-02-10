@@ -38,3 +38,4 @@ The feature that I implement not included in the orginal requirements.
 - After login successfully, there will be the popup occur 2 seconds before route to '/'.
 - There is the logout confirmation before execute the logout feature.
 - Animation for card. Hope this will smoother the user experience.
+- The login form includes validation, and any errors encountered are clearly displayed.
