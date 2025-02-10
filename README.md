@@ -39,3 +39,4 @@ The feature that I implement not included in the orginal requirements.
 - There is the logout confirmation before execute the logout feature.
 - Animation for card. Hope this will smoother the user experience.
 - The login form includes validation, and any errors encountered are clearly displayed.
+- Changing the password security style from dots to dashes isn't practical, as it prevents saving the password securely. Therefore, I've decided to revert to the original dot style.
