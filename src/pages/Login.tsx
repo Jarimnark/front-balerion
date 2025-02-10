@@ -22,18 +22,19 @@ const Login: React.FC = () => {
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    // console.log("new", newValue);
-    if (newValue.length > password.length) {
-      // Adding new character (only append the last character)
-      const lastChar = newValue.charAt(newValue.length - 1);
-      // console.log("last", lastChar);
-      setPassword((prevPass) => prevPass + lastChar);
-      // console.log("pass", password);
-    } else if (newValue.length < password.length) {
-      // Deleting a character (remove the last character)
-      setPassword((prevPass) => prevPass.slice(0, -1));
-    }
+    // const newValue = e.target.value;
+    // // console.log("new", newValue);
+    // if (newValue.length > password.length) {
+    //   // Adding new character (only append the last character)
+    //   const lastChar = newValue.charAt(newValue.length - 1);
+    //   // console.log("last", lastChar);
+    //   setPassword((prevPass) => prevPass + lastChar);
+    //   // console.log("pass", password);
+    // } else if (newValue.length < password.length) {
+    //   // Deleting a character (remove the last character)
+    //   setPassword((prevPass) => prevPass.slice(0, -1));
+    // }
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -81,13 +82,6 @@ const Login: React.FC = () => {
             id="password"
             name="password"
             value={password}
-            onChange={handlePasswordChange}
-            className="bg-[#393937] pt-2 pb-2.5 px-3 rounded-xl focus:outline-none hidden"
-          />
-          <input
-            id="password"
-            name="password"
-            value={"-".repeat(password.length)}
             onChange={handlePasswordChange}
             className="bg-[#393937] pt-2 pb-2.5 px-3 rounded-xl focus:outline-none"
           />
