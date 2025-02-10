@@ -27,7 +27,7 @@ const Header = () => {
             className="bg-white p-6 rounded-lg shadow-lg w-96"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
           >
-            <h2 className="text-lg font-semibold">Confirm Logout</h2>
+            <h2 className="text-lg font-semibold text-black">Confirm Logout</h2>
             <p className="text-gray-600 mt-2">
               Are you sure you want to log out?
             </p>

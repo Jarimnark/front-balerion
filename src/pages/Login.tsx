@@ -22,7 +22,18 @@ const Login: React.FC = () => {
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+    const newValue = e.target.value;
+    // console.log("new", newValue);
+    if (newValue.length > password.length) {
+      // Adding new character (only append the last character)
+      const lastChar = newValue.charAt(newValue.length - 1);
+      // console.log("last", lastChar);
+      setPassword((prevPass) => prevPass + lastChar);
+      // console.log("pass", password);
+    } else if (newValue.length < password.length) {
+      // Deleting a character (remove the last character)
+      setPassword((prevPass) => prevPass.slice(0, -1));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,10 +54,10 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <h1>เข้าสู่ระบบ</h1>
+      <h1 className="font-normal text-2xl font-thai">เข้าสู่ระบบ</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <div className="flex flex-col items-start gap-2">
-          <label htmlFor="username" className="text-xs font-normal">
+          <label htmlFor="username" className="text-xs font-normal font-thai">
             บัญชีพนักงาน
           </label>
           <input
@@ -62,7 +73,7 @@ const Login: React.FC = () => {
           )}
         </div>
         <div className="flex flex-col items-start gap-2">
-          <label htmlFor="password" className="text-xs font-normal">
+          <label htmlFor="password" className="text-xs font-normal font-thai">
             รหัสผ่าน
           </label>
           <input
@@ -70,6 +81,13 @@ const Login: React.FC = () => {
             id="password"
             name="password"
             value={password}
+            onChange={handlePasswordChange}
+            className="bg-[#393937] pt-2 pb-2.5 px-3 rounded-xl focus:outline-none hidden"
+          />
+          <input
+            id="password"
+            name="password"
+            value={"-".repeat(password.length)}
             onChange={handlePasswordChange}
             className="bg-[#393937] pt-2 pb-2.5 px-3 rounded-xl focus:outline-none"
           />
@@ -80,7 +98,7 @@ const Login: React.FC = () => {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button
           type="submit"
-          className="bg-white text-black rounded-[8px] h-[43px] hover:opacity-80 cursor-pointer"
+          className="bg-white text-black rounded-[8px] h-[43px] hover:opacity-80 cursor-pointer font-thai"
         >
           เข้าสู่ระบบ
         </button>

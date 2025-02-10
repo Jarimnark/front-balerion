@@ -9,6 +9,8 @@ body {
 
 @theme {
   --breakpoint-laptop: 1020px;
+
+  --font-thai: "Prompt", serif; 
 }
 
 
