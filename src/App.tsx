@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthLayout from "./layouts/AuthLayout";
 import Home from "./pages/Home";
@@ -11,15 +11,18 @@ function App() {
     <>
       <AuthProvider>
         <CardProvider>
-          <Routes>
-            <Route element={<AuthLayout />}>
-              <Route path="/auth/login" element={<Login />} />
-            </Route>
+          <HashRouter>
 
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-            </Route>
-          </Routes>
+            <Routes>
+              <Route element={<AuthLayout />}>
+                <Route path="/auth/login" element={<Login />} />
+              </Route>
+
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+              </Route>
+            </Routes>
+          </HashRouter>
         </CardProvider>
       </AuthProvider>
     </>
